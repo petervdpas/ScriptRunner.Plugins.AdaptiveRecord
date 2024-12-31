@@ -2,7 +2,7 @@
 {
     "TaskCategory": "Plugins",
     "TaskName": "Adaptive Record Demo",
-    "TaskDetail": "This is a new script runner script."
+    "TaskDetail": "This script demonstrates the usage of Adaptive Record Plugin."
 }
 */
 
@@ -95,4 +95,4 @@ DumpTable("Users:", usersTable);
 // Close the database connection
 db.CloseConnection();
 
-return "Script run completed";
+return "Adaptive Record interaction complete.";
