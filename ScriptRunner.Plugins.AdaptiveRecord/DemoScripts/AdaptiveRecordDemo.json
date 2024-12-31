@@ -1,0 +1,95 @@
+[
+  {
+    "Name": "Id",
+    "TypeName": "System.Int64",
+    "ControlType": "GeneratedIdTextBox",
+    "Placeholder": "Generated Id",
+    "IsRequired": true,
+    "IsDisplayField": false,
+    "Options": null,
+    "ControlParameters": {
+      "IsReadOnly": true
+    },
+    "DataSetControls": null
+  },
+  {
+    "Name": "Username",
+    "TypeName": "System.String",
+    "ControlType": "TextBox",
+    "Placeholder": "Enter username",
+    "IsRequired": true,
+    "IsDisplayField": true,
+    "Options": null,
+    "ControlParameters": {
+      "MaxLength": 50
+    },
+    "DataSetControls": null
+  },
+  {
+    "Name": "Age",
+    "TypeName": "System.Int64",
+    "ControlType": "NumericUpDown",
+    "Placeholder": "Enter age",
+    "IsRequired": true,
+    "IsDisplayField": false,
+    "Options": null,
+    "ControlParameters": {
+      "Min": 0,
+      "Max": 120
+    },
+    "DataSetControls": {
+      "IsAggregator": true,
+      "AggregateFunction": "Average"
+    }
+  },
+  {
+    "Name": "Country",
+    "TypeName": "System.String",
+    "ControlType": "ComboBox",
+    "Placeholder": "Select country",
+    "IsRequired": true,
+    "IsDisplayField": false,
+    "Options": [
+      "USA",
+      "Canada",
+      "Mexico",
+      "Germany",
+      "France",
+      "United Kingdom",
+      "Australia"
+    ],
+    "ControlParameters": null,
+    "DataSetControls": {
+      "IsGroupable": true,
+      "Filterable": true
+    }
+  },
+  {
+    "Name": "DateOfBirth",
+    "TypeName": "System.DateTime",
+    "ControlType": "DatePicker",
+    "Placeholder": "Birthday",
+    "IsRequired": false,
+    "IsDisplayField": false,
+    "Options": null,
+    "ControlParameters": null,
+    "DataSetControls": {
+      "DateAggregation": "Year"
+    }
+  },
+  {
+    "Name": "Status",
+    "TypeName": "System.Boolean",
+    "ControlType": "CheckBox",
+    "Placeholder": "Active status",
+    "IsRequired": false,
+    "IsDisplayField": false,
+    "Options": null,
+    "ControlParameters": {
+      "UseNumericBoolean": true
+    },
+    "DataSetControls": {
+      "Filterable": true
+    }
+  }
+]

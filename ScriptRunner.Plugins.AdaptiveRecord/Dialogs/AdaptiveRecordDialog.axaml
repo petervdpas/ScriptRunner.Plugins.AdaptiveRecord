@@ -1,0 +1,75 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:ScriptRunner.Plugins.AdaptiveRecord.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:AdaptiveRecordModel, IsDesignTimeCreatable=True}"
+        x:Class="ScriptRunner.Plugins.AdaptiveRecord.Dialogs.AdaptiveRecordDialog"
+        Title="AdaptiveRecordDialog"
+        Width="1280"
+        Height="720"
+        Icon="avares://ScriptRunner/Assets/hacker.ico"
+        WindowStartupLocation="CenterScreen"
+        x:DataType="vm:AdaptiveRecordModel">
+
+    <Window.KeyBindings>
+        <KeyBinding Gesture="Ctrl+Q" Command="{Binding QuitCommand}" />
+        <KeyBinding Gesture="Ctrl+A" Command="{Binding AddRecordCommand}" />
+        <KeyBinding Gesture="Ctrl+D" Command="{Binding DeleteRecordCommand}" />
+        <KeyBinding Gesture="Ctrl+S" Command="{Binding SaveRecordCommand}" />
+        <KeyBinding Gesture="Ctrl+C" Command="{Binding SaveChangesCommand}" />
+    </Window.KeyBindings>
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Border Grid.Row="0" BorderBrush="Gray" BorderThickness="0,0,0,1" Margin="2, 0, 2, 2">
+            <Menu>
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Quit" Command="{Binding QuitCommand}" InputGesture="Ctrl+Q" />
+                </MenuItem>
+                <MenuItem Header="_Record">
+                    <MenuItem Header="_Add Record" Command="{Binding AddRecordCommand}" InputGesture="Ctrl+A" />
+                    <MenuItem Header="_Delete Record" Command="{Binding DeleteRecordCommand}" InputGesture="Ctrl+D" />
+                    <MenuItem Header="_Save Record" Command="{Binding SaveRecordCommand}" InputGesture="Ctrl+S" />
+                    <MenuItem Header="Save _All Changes" Command="{Binding SaveChangesCommand}" InputGesture="Ctrl+C" />
+                </MenuItem>
+            </Menu>
+        </Border>
+        <Grid Grid.Row="1" ColumnDefinitions="3*,4,7*">
+            <!-- Left Pane: List of Items -->
+            <ListBox Grid.Column="0"
+                     ItemsSource="{Binding Items}"
+                     SelectedItem="{Binding SelectedItem}"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     Margin="5">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayName}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <!-- Vertical splitter -->
+            <GridSplitter Grid.Column="1" Background="Gray" ResizeDirection="Columns" BorderThickness="4" />
+            <!-- Right Pane: Details of the Selected Item -->
+            <ScrollViewer Grid.Column="2" Margin="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel Margin="5">
+                    <TextBlock Text="{Binding RecordIdentifier}"
+                               FontSize="16" FontStyle="Oblique" Margin="0,0,0,5" />
+                    <ItemsControl ItemsSource="{Binding DetailControls}" Margin="5">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ContentControl Content="{Binding}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="0,1,0,0" Margin="2, 2, 2, 0">
+            <StackPanel Orientation="Horizontal" Margin="2">
+                <TextBlock Text="Status:" VerticalAlignment="Center" Margin="5,5,0,5" />
+                <TextBlock Text="{Binding StatusMessage}" FontStyle="Oblique" VerticalAlignment="Center" Margin="5" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
