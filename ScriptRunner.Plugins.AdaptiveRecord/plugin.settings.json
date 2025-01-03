@@ -1,0 +1,7 @@
+[
+  {
+    "Key": "PluginName",
+    "Type": "string",
+    "DefaultValue": "AdaptiveRecord"
+  }
+]
