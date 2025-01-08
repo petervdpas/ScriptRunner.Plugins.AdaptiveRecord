@@ -85,10 +85,10 @@ public class Plugin : BaseAsyncServicePlugin
     /// </remarks>
     public override async Task ExecuteAsync()
     {
-        var storedSetting = PluginSettingsHelper.RetrieveSetting<string>(LocalStorage, "PluginName");
-        Console.WriteLine($"Retrieved PluginName: {storedSetting}");
-        
         // Example execution logic
         await Task.Delay(50);
+        
+        var storedSetting = PluginSettingsHelper.RetrieveSetting<string>(LocalStorage, "PluginName");
+        Console.WriteLine($"Retrieved PluginName: {storedSetting}");
     }
 }
