@@ -41,7 +41,11 @@ public class Plugin : BaseAsyncServicePlugin
     /// </remarks>
     public override async Task InitializeAsync(IEnumerable<PluginSettingDefinition> configuration)
     {
-        PluginSettingsHelper.DisplayValues(configuration);
+        // Store settings into LocalStorage
+        PluginSettingsHelper.StoreSettings(LocalStorage, configuration);
+
+        // Optionally display the settings
+        PluginSettingsHelper.DisplayStoredSettings(LocalStorage);
         
         await Task.CompletedTask;
     }
@@ -74,8 +78,10 @@ public class Plugin : BaseAsyncServicePlugin
     /// </remarks>
     public override async Task ExecuteAsync()
     {
+        var storedSetting = PluginSettingsHelper.RetrieveSetting<string>(LocalStorage, "PluginName");
+        Console.WriteLine($"Retrieved PluginName: {storedSetting}");
+        
         // Example execution logic
         await Task.Delay(50);
-        Console.WriteLine("AdaptiveRecord Plugin executed.");
     }
 }
