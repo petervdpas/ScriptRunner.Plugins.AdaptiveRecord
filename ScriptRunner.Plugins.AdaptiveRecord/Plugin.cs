@@ -30,7 +30,7 @@ public class Plugin : BaseAsyncServicePlugin
     ///     Gets the name of the plugin.
     /// </summary>
     public override string Name => "Adaptive Record";
-
+    
     /// <summary>
     /// Asynchronously initializes the plugin using the provided configuration settings.
     /// </summary>
@@ -41,6 +41,13 @@ public class Plugin : BaseAsyncServicePlugin
     /// </remarks>
     public override async Task InitializeAsync(IEnumerable<PluginSettingDefinition> configuration)
     {
+        if (LocalStorage == null)
+        {
+            throw new InvalidOperationException(
+                "LocalStorage has not been initialized. " +
+                "Ensure the host injects LocalStorage before calling InitializeAsync.");
+        }
+        
         // Store settings into LocalStorage
         PluginSettingsHelper.StoreSettings(LocalStorage, configuration);
 
