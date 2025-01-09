@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json;
+using Microsoft.Extensions.Options;
 using ScriptRunner.Plugins.AdaptiveRecord.Interfaces;
 using ScriptRunner.Plugins.Interfaces;
 using ScriptRunner.Plugins.Models;
@@ -74,7 +76,7 @@ public class AdaptiveRecord : IAdaptiveRecord
     public Type CreateClassFromJson(string jsonString)
     {
         // Deserialize the JSON into a list of PropertyDefinition objects
-        var properties = JsonSerializer.Deserialize<List<PropertyDefinition>>(jsonString);
+        var properties = JsonSerializer.Deserialize<List<DynamicPropertyMetadata>>(jsonString);
         if (properties == null)
             throw new ArgumentException("Invalid JSON format for properties.");
 
@@ -329,22 +331,22 @@ public class AdaptiveRecord : IAdaptiveRecord
     ///         </item>
     ///         <item>
     ///             <description>
-    ///                 Each property must have a valid <see cref="PropertyDefinition.Name" /> and
-    ///                 <see cref="PropertyDefinition.TypeName" />.
+    ///                 Each property must have a valid <see cref="DynamicPropertyMetadata.Name" /> and
+    ///                 <see cref="TypeName" />.
     ///             </description>
     ///         </item>
     ///         <item>
     ///             <description>
     ///                 Properties marked as required should not be read-only and must specify a
-    ///                 <see cref="PropertyDefinition.ControlType" />.
+    ///                 <see cref="DynamicPropertyMetadata.ControlType" />.
     ///             </description>
     ///         </item>
     ///         <item>
-    ///             <description>ComboBox properties require a non-empty set of <see cref="PropertyDefinition.Options" />.</description>
+    ///             <description>ComboBox properties require a non-empty set of <see cref="Options" />.</description>
     ///         </item>
     ///     </list>
     /// </remarks>
-    private static void ValidateSchema(List<PropertyDefinition> properties)
+    private static void ValidateSchema(List<DynamicPropertyMetadata> properties)
     {
         // Ensure an 'ID' property exists with the exact name 'ID' and compatible type
         var idField = properties.FirstOrDefault(p => string.Equals(p.Name, "Id", StringComparison.OrdinalIgnoreCase));
