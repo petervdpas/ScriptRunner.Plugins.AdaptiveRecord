@@ -2,7 +2,8 @@
 {
     "TaskCategory": "Plugins",
     "TaskName": "Adaptive Record Demo",
-    "TaskDetail": "This script demonstrates the usage of Adaptive Record Plugin."
+    "TaskDetail": "This script demonstrates the usage of Adaptive Record Plugin.",
+    "RequiredPlugins": ["Adaptive Record"]
 }
 */
 
