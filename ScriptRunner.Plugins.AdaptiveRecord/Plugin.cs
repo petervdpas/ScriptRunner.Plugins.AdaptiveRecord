@@ -41,18 +41,11 @@ public class Plugin : BaseAsyncServicePlugin
     /// </remarks>
     public override async Task InitializeAsync(IEnumerable<PluginSettingDefinition> configuration)
     {
-        if (LocalStorage == null)
-        {
-            throw new InvalidOperationException(
-                "LocalStorage has not been initialized. " +
-                "Ensure the host injects LocalStorage before calling InitializeAsync.");
-        }
-        
         // Store settings into LocalStorage
-        PluginSettingsHelper.StoreSettings(LocalStorage, configuration);
+        PluginSettingsHelper.StoreSettings(configuration);
 
         // Optionally display the settings
-        PluginSettingsHelper.DisplayStoredSettings(LocalStorage);
+        PluginSettingsHelper.DisplayStoredSettings();
         
         await Task.CompletedTask;
     }
@@ -88,7 +81,7 @@ public class Plugin : BaseAsyncServicePlugin
         // Example execution logic
         await Task.Delay(50);
         
-        var storedSetting = PluginSettingsHelper.RetrieveSetting<string>(LocalStorage, "PluginName");
+        var storedSetting = PluginSettingsHelper.RetrieveSetting<string>("PluginName");
         Console.WriteLine($"Retrieved PluginName: {storedSetting}");
     }
 }
