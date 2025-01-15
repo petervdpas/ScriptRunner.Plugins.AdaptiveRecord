@@ -15,15 +15,16 @@ toc-own-page: true
 
 ## Goal
 
-Learn how to use the **Adaptive Record** plugin in ScriptRunner to dynamically manage records in a flexible schema, 
+Learn how to use the **Adaptive Record** plugin in ScriptRunner to dynamically manage records in a flexible schema,
 including fetching, adding, updating, and deleting records from a database.
 
-This recipe covers defining dynamic classes from JSON schemas, fetching data dynamically, 
+This recipe covers defining dynamic classes from JSON schemas, fetching data dynamically,
 and interacting with the **Adaptive Record** plugin to manipulate the data within a database.
 
 ## Overview
 
 This recipe demonstrates how to:
+
 1. Define dynamic schemas using JSON and create corresponding classes.
 2. Fetch data dynamically from a database.
 3. Perform CRUD operations (Create, Read, Update, Delete) on records.
@@ -376,6 +377,7 @@ return "Adaptive Record interaction complete.";
 ## Expected Output
 
 When executed, this script will:
+
 1. Create and populate a table of users in an in-memory SQLite database.
 2. Allow users to interact with the data dynamically through a dialog interface.
 3. Perform CRUD operations on the data.
@@ -385,7 +387,11 @@ When executed, this script will:
 
 ## Tips & Notes
 
-- **Dynamic Schema**: The **Adaptive Record** plugin allows for dynamic schema creation from JSON, making it highly flexible.
-- **Interactive Dialogs**: Use the **AdaptiveRecordDialogService** to create rich, interactive forms for data entry and modification.
-- **Customization**: Customize the dialog appearance and behavior by tweaking the parameters in the **GetAdaptiveRecordAsync** method.
-- **Transactions**: Consider wrapping the database operations in transactions for better consistency when performing batch operations.
+- **Dynamic Schema**: The **Adaptive Record** plugin allows for dynamic schema creation from JSON, making it highly
+  flexible.
+- **Interactive Dialogs**: Use the **AdaptiveRecordDialogService** to create rich, interactive forms for data entry and
+  modification.
+- **Customization**: Customize the dialog appearance and behavior by tweaking the parameters in the *
+  *GetAdaptiveRecordAsync** method.
+- **Transactions**: Consider wrapping the database operations in transactions for better consistency when performing
+  batch operations.

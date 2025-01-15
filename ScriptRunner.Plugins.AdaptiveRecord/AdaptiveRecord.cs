@@ -14,8 +14,8 @@ using ScriptRunner.Plugins.Models;
 namespace ScriptRunner.Plugins.AdaptiveRecord;
 
 /// <summary>
-/// Provides functionality for managing adaptive records, including dynamic class generation,
-/// data manipulation, and schema validation.
+///     Provides functionality for managing adaptive records, including dynamic class generation,
+///     data manipulation, and schema validation.
 /// </summary>
 public class AdaptiveRecord : IAdaptiveRecord
 {
@@ -91,7 +91,7 @@ public class AdaptiveRecord : IAdaptiveRecord
     }
 
     /// <summary>
-    /// Fetches data rows from an external source and populates the internal DataTable.
+    ///     Fetches data rows from an external source and populates the internal DataTable.
     /// </summary>
     /// <exception cref="InvalidOperationException">Thrown if the fetch callback is not set.</exception>
     public void FetchDataRows()
@@ -143,7 +143,7 @@ public class AdaptiveRecord : IAdaptiveRecord
     }
 
     /// <summary>
-    /// Updates a row in the DataTable with values from the specified instance.
+    ///     Updates a row in the DataTable with values from the specified instance.
     /// </summary>
     /// <param name="instance">The object instance containing updated property values.</param>
     public void AddDataRow(object instance)
@@ -157,10 +157,7 @@ public class AdaptiveRecord : IAdaptiveRecord
 
         foreach (var prop in DynamicType!.GetProperties())
         {
-            if (!_dataTable.Columns.Contains(prop.Name))
-            {
-                continue;
-            }
+            if (!_dataTable.Columns.Contains(prop.Name)) continue;
 
             var value = prop.GetValue(instance);
             row[prop.Name] = value ?? DBNull.Value;
@@ -172,7 +169,7 @@ public class AdaptiveRecord : IAdaptiveRecord
     }
 
     /// <summary>
-    /// Updates a row in the DataTable with values from the specified instance.
+    ///     Updates a row in the DataTable with values from the specified instance.
     /// </summary>
     /// <param name="instance">The object instance containing updated property values.</param>
     public void UpdateDataRow(object instance)
@@ -279,7 +276,7 @@ public class AdaptiveRecord : IAdaptiveRecord
 
         return sb.ToString();
     }
-    
+
     /// <summary>
     ///     Retrieves the property representing the unique identifier field of the dynamic type,
     ///     typically named "ID".
@@ -302,6 +299,7 @@ public class AdaptiveRecord : IAdaptiveRecord
         {
             // Log.Error("Warning: 'Id' property should be named exactly as 'Id'.");
         }
+
         return idProperty;
     }
 

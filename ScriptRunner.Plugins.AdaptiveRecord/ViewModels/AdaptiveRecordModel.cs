@@ -13,14 +13,14 @@ using ScriptRunner.Plugins.Models;
 namespace ScriptRunner.Plugins.AdaptiveRecord.ViewModels;
 
 /// <summary>
-/// ViewModel for managing an adaptive record-based UI. This model facilitates operations such as adding, deleting, 
-/// saving, and updating records dynamically, as well as generating UI controls based on data structures.
+///     ViewModel for managing an adaptive record-based UI. This model facilitates operations such as adding, deleting,
+///     saving, and updating records dynamically, as well as generating UI controls based on data structures.
 /// </summary>
 public class AdaptiveRecordModel : ReactiveObject
 {
+    private readonly IAdaptiveRecord _adaptiveRecord;
     private readonly IAvaloniaControlFactory _controlFactory;
     private readonly Window _dialog;
-    private readonly IAdaptiveRecord _adaptiveRecord;
 
     private ObservableCollection<RecordItem> _items;
     private string? _recordIdentifier;
@@ -29,7 +29,7 @@ public class AdaptiveRecordModel : ReactiveObject
     private string _statusMessage = "Ready";
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="AdaptiveRecordModel"/> class.
+    ///     Initializes a new instance of the <see cref="AdaptiveRecordModel" /> class.
     /// </summary>
     /// <param name="dialog">The parent dialog window managing this ViewModel.</param>
     /// <param name="adaptiveRecord">The adaptive record interface handling dynamic data and structure.</param>
@@ -58,32 +58,32 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Command to quit the dialog and close it without saving changes.
+    ///     Command to quit the dialog and close it without saving changes.
     /// </summary>
     public ReactiveCommand<Unit, Unit> QuitCommand { get; }
 
     /// <summary>
-    /// Command to add a new record.
+    ///     Command to add a new record.
     /// </summary>
     public ReactiveCommand<Unit, Unit> AddRecordCommand { get; }
 
     /// <summary>
-    /// Command to delete the currently selected record.
+    ///     Command to delete the currently selected record.
     /// </summary>
     public ReactiveCommand<Unit, Unit> DeleteRecordCommand { get; }
 
     /// <summary>
-    /// Command to save changes to the currently selected record.
+    ///     Command to save changes to the currently selected record.
     /// </summary>
     public ReactiveCommand<Unit, Unit> SaveRecordCommand { get; }
 
     /// <summary>
-    /// Command to save all modified records.
+    ///     Command to save all modified records.
     /// </summary>
     public ReactiveCommand<Unit, Unit> SaveChangesCommand { get; }
 
     /// <summary>
-    /// Gets or sets the collection of record items being displayed.
+    ///     Gets or sets the collection of record items being displayed.
     /// </summary>
     public ObservableCollection<RecordItem> Items
     {
@@ -92,8 +92,8 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Gets or sets the currently selected record item.
-    /// Updates UI controls when the selection changes.
+    ///     Gets or sets the currently selected record item.
+    ///     Updates UI controls when the selection changes.
     /// </summary>
     public RecordItem? SelectedItem
     {
@@ -109,7 +109,7 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Gets or sets a display identifier for the currently selected record.
+    ///     Gets or sets a display identifier for the currently selected record.
     /// </summary>
     public string? RecordIdentifier
     {
@@ -118,7 +118,7 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Gets the UI controls dynamically generated for the currently selected record.
+    ///     Gets the UI controls dynamically generated for the currently selected record.
     /// </summary>
     public IEnumerable<Control> DetailControls =>
         SelectedItem != null
@@ -127,7 +127,7 @@ public class AdaptiveRecordModel : ReactiveObject
             : [];
 
     /// <summary>
-    /// Gets or sets the status message displayed in the UI.
+    ///     Gets or sets the status message displayed in the UI.
     /// </summary>
     public string StatusMessage
     {
@@ -136,7 +136,7 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Closes the dialog window without returning any result.
+    ///     Closes the dialog window without returning any result.
     /// </summary>
     private void CloseDialog()
     {
@@ -144,7 +144,7 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Adds a new record to the collection and the underlying data source.
+    ///     Adds a new record to the collection and the underlying data source.
     /// </summary>
     private void AddRecord()
     {
@@ -169,7 +169,7 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Saves changes to the currently selected record.
+    ///     Saves changes to the currently selected record.
     /// </summary>
     private void SaveRecord()
     {
@@ -186,7 +186,7 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Saves all records that have been modified.
+    ///     Saves all records that have been modified.
     /// </summary>
     private void SaveChangedRecords()
     {
@@ -208,7 +208,7 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Internal helper to save a specific record item to the data source.
+    ///     Internal helper to save a specific record item to the data source.
     /// </summary>
     /// <param name="recordItem">The record item to save.</param>
     private void SaveRecordInternal(RecordItem recordItem)
@@ -239,7 +239,7 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Deletes the currently selected record from the collection and the data source.
+    ///     Deletes the currently selected record from the collection and the data source.
     /// </summary>
     private void DeleteRecord()
     {
@@ -271,7 +271,7 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Refreshes the item collection after changes to the data source.
+    ///     Refreshes the item collection after changes to the data source.
     /// </summary>
     /// <param name="selectedItemId">The ID of the currently selected item, if any.</param>
     private void RefreshItems(object? selectedItemId = null)
@@ -293,7 +293,7 @@ public class AdaptiveRecordModel : ReactiveObject
     }
 
     /// <summary>
-    /// Updates the status message displayed in the UI.
+    ///     Updates the status message displayed in the UI.
     /// </summary>
     /// <param name="msg">The message to display.</param>
     private void SetStatusMessage(string msg)
@@ -301,5 +301,4 @@ public class AdaptiveRecordModel : ReactiveObject
         //Log.Debug(msg);
         StatusMessage = msg;
     }
-    
 }
