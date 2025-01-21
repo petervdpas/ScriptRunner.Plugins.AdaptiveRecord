@@ -2,6 +2,7 @@
   {
     "Key": "PluginName",
     "Type": "string",
-    "DefaultValue": "AdaptiveRecord"
+    "DefaultValue": "AdaptiveRecord",
+    "IsSecret": false
   }
 ]
